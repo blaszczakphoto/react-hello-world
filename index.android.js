@@ -11,7 +11,8 @@ import {
   Text,
   View,
   Image,
-  TextInput
+  TextInput,
+  ScrollView
 } from 'react-native';
 
 class LoversName extends Component {
@@ -26,7 +27,7 @@ class LoversName extends Component {
 
   render() {
     return (
-      <View style={{padding: 10, flex: 1}}>
+      <ScrollView style={{padding: 10, flex: 1}}>
         <TextInput
           style={{height:40, flex:1}}
           placeholder='Jak się nazywa Twoje Kochanie?'
@@ -34,7 +35,7 @@ class LoversName extends Component {
           onSubmitEditing={() => this.displayGreetings()}
         />
         <Hello name={this.state.text} style={{opacity: this.state.HelloVisibility,flex: 5, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'}}/>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -85,6 +86,9 @@ class Hello extends Component {
             <Greeting name={this.props.name} />
             <Blink text='Kocham Cię' style={{color: 'red'}} />
             <Image source={pic} style={{width: 193, height: 200}}/>
+            <Image source={pic} style={{width: 193, height: 200}}/>
+            <Image source={pic} style={{width: 193, height: 200}}/>
+            <Image source={pic} style={{width: 193, height: 200}}/>
           </View>
         </View>
       </View>
@@ -96,7 +100,6 @@ class Hello extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 300,
     width: 150,
     justifyContent: 'center',
     alignItems: 'center',
