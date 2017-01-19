@@ -20,12 +20,30 @@ class LoversFeatures extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'Piękna', 'Mądra', 'Zgrabna', 'Ładnie śpiewa', 'Ładnie się ubiera', 'Ma piękny uśmiech', 'Jest bardzo wyrozumiała', 'Jest gościnna'
-      ])
+      dataSource: ds.cloneWithRows(["Piękna", 
+  "Mądra", 
+  "Zgrabna", 
+  "Ładnie śpiewa", 
+  "Ładnie się ubiera", 
+  "Ma piękny uśmiech", 
+  "Jest bardzo wyrozumiała", 
+  "Jest gościnna"])
     };
+    this.getLoversFeatures();
   };
+
+  getLoversFeatures = () => {
+    return fetch('http://valorcollection.pl/cechy.json')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      // this.setState({dataSource: this.state.dataSource.cloneWithRows(responseJson});
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
   render() {
     return (
