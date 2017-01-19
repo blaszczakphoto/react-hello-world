@@ -16,6 +16,8 @@
   ListView
 } from 'react-native';
 
+import MyScene from './MyScene'
+
 class LoversFeatures extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,10 @@ class LoversFeatures extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([""])
     };
+    this.fetchFeaturesFromServer();
+  };
 
+  fetchFeaturesFromServer() {
     fetch('http://valorcollection.pl/cechy.json')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -33,7 +38,7 @@ class LoversFeatures extends Component {
     .catch((error) => {
       console.log(error);
     })
-  };
+  }
 
   render() {
     return (
@@ -61,6 +66,8 @@ class LoversName extends Component {
   render() {
     return (
       <ScrollView style={{padding: 10, flex: 1}}>
+          <MyScene />
+      
       <LoversFeatures />
       <TextInput
         style={{height:40, flex:1}}
@@ -113,13 +120,13 @@ class Hello extends Component {
     };
     return (
       <View style={this.props.style}>
-      <View style={{}}>
-      <View style={styles.container}>
-      <Greeting name={this.props.name} />
-      <Blink text='Kocham Cię' style={{color: 'red'}} />
-      <Image source={pic} style={{width: 193, height: 200}}/>
-      </View>
-      </View>
+        <View style={{}}>
+          <View style={styles.container}>
+            <Greeting name={this.props.name} />
+            <Blink text='Kocham Cię' style={{color: 'red'}} />
+            <Image source={pic} style={{width: 193, height: 200}}/>
+          </View>
+        </View>
       </View>
       );
   }
