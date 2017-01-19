@@ -4,8 +4,8 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
+ import React, { Component } from 'react';
+ import {
   AppRegistry,
   StyleSheet,
   Text,
@@ -22,39 +22,29 @@ class LoversFeatures extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     this.state = {
-      dataSource: ds.cloneWithRows(["Piękna", 
-  "Mądra", 
-  "Zgrabna", 
-  "Ładnie śpiewa", 
-  "Ładnie się ubiera", 
-  "Ma piękny uśmiech", 
-  "Jest bardzo wyrozumiała", 
-  "Jest gościnna"])
+      dataSource: ds.cloneWithRows([""])
     };
-    this.getLoversFeatures();
-  };
 
-  getLoversFeatures = () => {
-    return fetch('http://valorcollection.pl/cechy.json')
+    fetch('http://valorcollection.pl/cechy.json')
     .then((response) => response.json())
     .then((responseJson) => {
-      // this.setState({dataSource: this.state.dataSource.cloneWithRows(responseJson});
+      this.setState({dataSource: this.state.dataSource.cloneWithRows(responseJson)});
     })
     .catch((error) => {
       console.log(error);
     })
-  }
+  };
 
   render() {
     return (
       <View style={{flex: 1}}>
-        <Text style={{fontWeight: 'bold'}}>Oto cechy osoby, która jest dla Ciebie ważna. Kto to taki?{"\n"}</Text>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData}</Text> }
-        />
+      <Text style={{fontWeight: 'bold'}}>Oto cechy osoby, która jest dla Ciebie ważna. Kto to taki?{"\n"}</Text>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={(rowData) => <Text>{rowData}</Text>}
+      />
       </View>
-    );
+      );
   };
 }
 
@@ -71,16 +61,16 @@ class LoversName extends Component {
   render() {
     return (
       <ScrollView style={{padding: 10, flex: 1}}>
-        <LoversFeatures />
-        <TextInput
-          style={{height:40, flex:1}}
-          placeholder='Jak się nazywa Twoje Kochanie?'
-          onChangeText={(text) => this.setState({text})}
-          onSubmitEditing={() => this.displayGreetings()}
-        />
-        <Hello name={this.state.text} style={{opacity: this.state.HelloVisibility,flex: 5, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'}}/>
+      <LoversFeatures />
+      <TextInput
+        style={{height:40, flex:1}}
+        placeholder='Jak się nazywa Twoje Kochanie?'
+        onChangeText={(text) => this.setState({text})}
+        onSubmitEditing={() => this.displayGreetings()}
+      />
+      <Hello name={this.state.text} style={{opacity: this.state.HelloVisibility,flex: 5, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'}}/>
       </ScrollView>
-    );
+      );
   }
 }
 
@@ -107,9 +97,7 @@ class Blink extends Component {
 class Greeting extends Component {
   render() {
     return (
-      <Text style={styles.welcome}>
-          Witaj Kochana {this.props.name}!
-      </Text>
+      <Text style={styles.welcome}>Witaj Kochana {this.props.name}!</Text>
     );
   }
 }
@@ -125,21 +113,17 @@ class Hello extends Component {
     };
     return (
       <View style={this.props.style}>
-        <View style={{}}>
-          <View style={styles.container}>
-            <Greeting name={this.props.name} />
-            <Blink text='Kocham Cię' style={{color: 'red'}} />
-            <Image source={pic} style={{width: 193, height: 200}}/>
-            <Image source={pic} style={{width: 193, height: 200}}/>
-            <Image source={pic} style={{width: 193, height: 200}}/>
-            <Image source={pic} style={{width: 193, height: 200}}/>
-          </View>
-        </View>
+      <View style={{}}>
+      <View style={styles.container}>
+      <Greeting name={this.props.name} />
+      <Blink text='Kocham Cię' style={{color: 'red'}} />
+      <Image source={pic} style={{width: 193, height: 200}}/>
       </View>
-    );
+      </View>
+      </View>
+      );
   }
 }
-
 
 
 const styles = StyleSheet.create({
@@ -153,11 +137,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: 'red',
-    marginBottom: 5,
   },
 });
 
